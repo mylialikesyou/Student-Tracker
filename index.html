@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Tracker Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f7;
+      color: #222;
+    }
+    header {
+      background: #1f3c88;
+      color: #fff;
+      padding: 16px 24px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    main {
+      padding: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    section {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #1f3c88;
+    }
+    h3 {
+      margin-bottom: 8px;
+      margin-top: 16px;
+      font-size: 16px;
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .form-row input,
+    .form-row select {
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 13px;
+      flex: 1 1 150px;
+    }
+    button {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: none;
+      background: #1f3c88;
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #162a5c;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px 8px;
+      text-align: left;
+    }
+    th {
+      background: #f0f2f7;
+    }
+    .small-note {
+      font-size: 12px;
+      color: #555;
+      margin-top: 4px;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+    .checklist-item input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 11px;
+      background: #e4ecff;
+      color: #1f3c88;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Student Tracker Dashboard</h1>
+  </header>
+
+  <main>
+    <!-- Scholarship / Internship / Contest Tracker -->
+    <section>
+      <h2>Scholarship / Internship / Contest Tracker</h2>
+
+      <div class="form-row">
+        <input id="opp-name" type="text" placeholder="Name" />
+        <select id="opp-type">
+          <option value="Scholarship">Scholarship</option>
+          <option value="Internship">Internship</option>
+          <option value="Contest">Contest</option>
+        </select>
+        <input id="opp-deadline" type="date" />
+        <select id="opp-status">
+          <option value="Not Started">Not Started</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Submitted">Submitted</option>
+          <option value="Won / Accepted">Won / Accepted</option>
+        </select>
+        <input id="opp-amount" type="number" placeholder="Amount ($)" />
+        <input id="opp-link" type="url" placeholder="Link" />
+        <button onclick="addOpportunity()">Add</button>
+      </div>
+      <div class="small-note">Tip: leave amount blank if it’s not about money (like some contests or internships).</div>
+
+      <table id="opp-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be added here -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Senior Checklist -->
+    <section>
+      <h2>Senior Checklist (Before End of Junior Year)</h2>
+
+      <h3>Academics</h3>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Maintain strong GPA and pass all core classes</span>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Meet with counselor to review graduation requirements</span>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Choose rigorous junior/senior courses that match your goals</span>
+      </div>
+
+      <h3>College & Career</h3>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Create a college list (reach, match, safety)</span>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Start a résumé with activities, awards, and skills</span>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Research scholarships and note major deadlines</span>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Plan for SAT/ACT or decide test-optional strategy</span>
+      </div>
+
+      <h3>Extracurriculars & Leadership</h3>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Commit to a few meaningful clubs or activities</span>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Seek or prepare for leadership roles</span>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Track volunteer hours and impact</span>
+      </div>
+
+      <h3>Personal & Summer</h3>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Create a professional email and clean up social media</span>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" />
+        <span>Plan summer: job, internship, program, or volunteering</span>
+      </div>
+    </section>
+
+    <!-- Volunteer & Clubs Tracker -->
+    <section>
+      <h2>Volunteer & Clubs Hours Tracker</h2>
+
+      <div class="form-row">
+        <input id="org-name" type="text" placeholder="Organization / Club" />
+        <select id="org-type">
+          <option value="Volunteer">Volunteer</option>
+          <option value="Club">Club</option>
+        </select>
+        <input id="org-role" type="text" placeholder="Your Role" />
+        <input id="org-hours" type="number" placeholder="Hours (this entry)" />
+        <input id="org-notes" type="text" placeholder="Notes (event, project, etc.)" />
+        <button onclick="addActivity()">Add</button>
+      </div>
+      <div class="small-note">
+        Total hours update automatically. You can log multiple entries for the same club or organization.
+      </div>
+
+      <table id="activity-table">
+        <thead>
+          <tr>
+            <th>Organization / Club</th>
+            <th>Type</th>
+            <th>Role</th>
+            <th>Hours</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be added here -->
+        </tbody>
+      </table>
+
+      <p class="small-note">
+        <strong>Total Hours Logged:</strong> <span id="total-hours">0</span>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // Scholarship / Internship / Contest
+    function addOpportunity() {
+      const name = document.getElementById('opp-name').value.trim();
+      const type = document.getElementById('opp-type').value;
+      const deadline = document.getElementById('opp-deadline').value;
+      const status = document.getElementById('opp-status').value;
+      const amount = document.getElementById('opp-amount').value;
+      const link = document.getElementById('opp-link').value.trim();
+
+      if (!name) {
+        alert('Please enter a name.');
+        return;
+      }
+
+      const tbody = document.querySelector('#opp-table tbody');
+      const tr = document.createElement('tr');
+
+      tr.innerHTML = `
+        <td>${name}</td>
+        <td>${type}</td>
+        <td>${deadline || '-'}</td>
+        <td>${status}</td>
+        <td>${amount ? '$' + amount : '-'}</td>
+        <td>${link ? '<a href="' + link + '" target="_blank">Open</a>' : '-'}</td>
+      `;
+
+      tbody.appendChild(tr);
+
+      document.getElementById('opp-name').value = '';
+      document.getElementById('opp-deadline').value = '';
+      document.getElementById('opp-amount').value = '';
+      document.getElementById('opp-link').value = '';
+      document.getElementById('opp-status').value = 'Not Started';
+      document.getElementById('opp-type').value = 'Scholarship';
+    }
+
+    // Volunteer & Clubs
+    let totalHours = 0;
+
+    function addActivity() {
+      const name = document.getElementById('org-name').value.trim();
+      const type = document.getElementById('org-type').value;
+      const role = document.getElementById('org-role').value.trim();
+      const hoursStr = document.getElementById('org-hours').value;
+      const notes = document.getElementById('org-notes').value.trim();
+
+      if (!name) {
+        alert('Please enter an organization or club name.');
+        return;
+      }
+      const hours = parseFloat(hoursStr || '0');
+      if (isNaN(hours) || hours <= 0) {
+        alert('Please enter a positive number of hours.');
+        return;
+      }
+
+      const tbody = document.querySelector('#activity-table tbody');
+      const tr = document.createElement('tr');
+
+      tr.innerHTML = `
+        <td>${name}</td>
+        <td>${type}</td>
+        <td>${role || '-'}</td>
+        <td>${hours}</td>
+        <td>${notes || '-'}</td>
+      `;
+
+      tbody.appendChild(tr);
+
+      totalHours += hours;
+      document.getElementById('total-hours').textContent = totalHours;
+
+      document.getElementById('org-name').value = '';
+      document.getElementById('org-role').value = '';
+      document.getElementById('org-hours').value = '';
+      document.getElementById('org-notes').value = '';
+      document.getElementById('org-type').value = 'Volunteer';
+    }
+  </script>
+</body>
+</html>
